@@ -10,6 +10,8 @@ public class FSMScript : MonoBehaviour
 
     public SpriteRenderer SR;
     public List<Sprite> AllSprites;
+    WaitForSeconds Delay01 = new WaitForSeconds(0.1f);
+    WaitForSeconds Delay05 = new WaitForSeconds(0.5f);
     List<Sprite> CurSprites;
     int characterIndex;
     readonly int SIZE = 4;
@@ -34,12 +36,16 @@ public class FSMScript : MonoBehaviour
 
     IEnumerator Idle()
     {
-        Debug.Log("IDLE");
-        yield return new WaitForSeconds(1f);
+        SR.sprite = CurSprites[0];
+        yield return Delay05;
+        SR.sprite = CurSprites[1];
+        yield return Delay05;
     }
     IEnumerator Fly()
     {
-        Debug.Log("Fly");
-        yield return new WaitForSeconds(1f);
+        SR.sprite = CurSprites[2];
+        yield return Delay01;
+        SR.sprite = CurSprites[3];
+        yield return Delay01;
     }
 }
