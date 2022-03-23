@@ -48,18 +48,29 @@ public class Student : BaseGameEntity
         // 생성되는 오브젝트의 이름 설정
         gameObject.name = $"{ID:D5}_Student_{name}";
 
+        // Student가 가질 수 있는 상태 개수 만큼 메모리 할당, 각 상태에 클래스 메모리 할당
+        states = new State[System.Enum.GetValues(typeof(StudentStates)).Length];
+        states[(int)StudentStates.RestAndSleep] = new StudentOwnedStates.RestAndSleep();
+
+        // 현재 상태를 집에서 쉬는 "RestAndSleep" 상태로 설정
+        currentState = states[(int)StudentStates.RestAndSleep];
+
         knowledge = 0;
         stress = 0;
         fatigue = 0;
         totalScore = 0;
         currentLocation = Locations.SweetHome;
 
-        PrintText("Hello Real World");
+        // PrintText("Hello Real World");
     }
 
     public override void Updated()
     {
-        PrintText("대기중입니다...");
+        // PrintText("대기중입니다...");
+        if(currentState != null)
+        {
+            currentState.Execute(this);
+        }
     }
 
 }
