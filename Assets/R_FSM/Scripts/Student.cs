@@ -11,8 +11,8 @@ public class Student : BaseGameEntity
     private Locations currentLocation;  // 현재 위치
 
     // Student가 가지고 있는 모든 상태, 현재 상태
-    private State[] states;
-    private State currentState;
+    // private State[] states;
+    // private State currentState;
 
     public int Knowledge
     {
@@ -52,7 +52,7 @@ public class Student : BaseGameEntity
         stress = 0;
         fatigue = 0;
         totalScore = 0;
-        currentLocation = LocationInfo.SweetHome;
+        currentLocation = Locations.SweetHome;
 
         PrintText("Hello Real World");
     }
