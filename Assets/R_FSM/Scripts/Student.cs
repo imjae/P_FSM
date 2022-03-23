@@ -46,7 +46,7 @@ public class Student : BaseGameEntity
         base.Setup(name);
 
         // 생성되는 오브젝트의 이름 설정
-        gameObject.name = $"{ID:D2}_Student_{name}";
+        gameObject.name = $"{ID:D5}_Student_{name}";
 
         knowledge = 0;
         stress = 0;
