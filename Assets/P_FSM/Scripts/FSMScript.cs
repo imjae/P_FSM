@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class FSMScript : MonoBehaviour
 {
-    public enum State { Idle, Fly };
+    public enum State { Idle, Fly, Attack };
     public State state;
 
     public SpriteRenderer SR;
+    public Animator AN;
     public List<Sprite> AllSprites;
     WaitForSeconds Delay01 = new WaitForSeconds(0.1f);
     WaitForSeconds Delay05 = new WaitForSeconds(0.5f);
+    WaitForSeconds Delay1 = new WaitForSeconds(1f);
     List<Sprite> CurSprites;
     int characterIndex;
     readonly int SIZE = 4;
@@ -47,5 +49,13 @@ public class FSMScript : MonoBehaviour
         yield return Delay01;
         SR.sprite = CurSprites[3];
         yield return Delay01;
+    }
+
+    IEnumerator Attack()
+    {
+        SR.sprite = CurSprites[0];
+        AN.SetTrigger("attack");
+        yield return Delay1;
+        state = State.Idle;
     }
 }
