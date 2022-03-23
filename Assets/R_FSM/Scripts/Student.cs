@@ -52,6 +52,9 @@ public class Student : BaseGameEntity
         states = new State[System.Enum.GetValues(typeof(StudentStates)).Length];
         states[(int)StudentStates.RestAndSleep] = new StudentOwnedStates.RestAndSleep();
         states[(int)StudentStates.StudyHard] = new StudentOwnedStates.StudyHard();
+        states[(int)StudentStates.TakeAExam] = new StudentOwnedStates.TakeAExam();
+        states[(int)StudentStates.PlayAGame] = new StudentOwnedStates.PlayAGame();
+        states[(int)StudentStates.HitTheBottle] = new StudentOwnedStates.HitTheBottle();
 
         // 현재 상태를 집에서 쉬는 "RestAndSleep" 상태로 설정
         ChangeState(StudentStates.RestAndSleep);
