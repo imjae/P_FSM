@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+public abstract class State<T> where T : class
 {
-    public abstract void Enter(Student entity);
-    public abstract void Execute(Student entity);
-    public abstract void Exit(Student entity);
+    public abstract void Enter(T entity);
+    public abstract void Execute(T entity);
+    public abstract void Exit(T entity);
 }
