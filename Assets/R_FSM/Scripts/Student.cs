@@ -11,8 +11,8 @@ public class Student : BaseGameEntity
     private Locations currentLocation;  // 현재 위치
 
     // Student가 가지고 있는 모든 상태, 현재 상태
-    private State[] states;
-    private State currentState;
+    private State<Student>[] states;
+    private State<Student> currentState;
 
     public int Knowledge
     {
@@ -49,7 +49,7 @@ public class Student : BaseGameEntity
         gameObject.name = $"{ID:D5}_Student_{name}";
 
         // Student가 가질 수 있는 상태 개수 만큼 메모리 할당, 각 상태에 클래스 메모리 할당
-        states = new State[System.Enum.GetValues(typeof(StudentStates)).Length];
+        states = new State<Student>[System.Enum.GetValues(typeof(StudentStates)).Length];
         states[(int)StudentStates.RestAndSleep] = new StudentOwnedStates.RestAndSleep();
         states[(int)StudentStates.StudyHard] = new StudentOwnedStates.StudyHard();
         states[(int)StudentStates.TakeAExam] = new StudentOwnedStates.TakeAExam();
