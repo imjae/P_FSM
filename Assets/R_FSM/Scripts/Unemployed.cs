@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UnemployedStates { RestAndSleep = 0, PlayAGame, HitTheBottle }
+public enum UnemployedStates { RestAndSleep = 0, PlayAGame, HitTheBottle, VisitBathroom, Global }
 
 public class Unemployed : BaseGameEntity
 {
@@ -36,6 +36,8 @@ public class Unemployed : BaseGameEntity
         set => currentLocation = value;
     }
 
+    public UnemployedStates CurrentState { private set; get; }
+
     public override void Setup(string name)
     {
         base.Setup(name);
@@ -43,8 +45,19 @@ public class Unemployed : BaseGameEntity
         // 생성되는 오브젝트 이름 설정
         gameObject.name = $"{ID:D2}_Unemployed_{name}";
 
+        // Unemployed가 가질 수 있는 상태 개수만큼 메모리 할당, 각 상태에 클래스 메모리 할당
+        states = new State<Unemployed>[5];
+        states[(int)UnemployedStates.RestAndSleep] = new UnemployedOwnedStates.RestAndSleep();
+        states[(int)UnemployedStates.PlayAGame] = new UnemployedOwnedStates.PlayAGame();
+        states[(int)UnemployedStates.HitTheBottle] = new UnemployedOwnedStates.HitTheBottle();
+        states[(int)UnemployedStates.VisitBathroom] = new UnemployedOwnedStates.VisitBathroom();
+        states[(int)UnemployedStates.Global] = new UnemployedOwnedStates.StateGlobal();
+
         // 상태를 관리하는 StateMachnie에 메모리를 할당하고, 첫 상태를 설정
         stateMachine = new StateMachine<Unemployed>();
+        stateMachine.Setup(this, states[(int)UnemployedStates.RestAndSleep]);
+        // 전역상태 설정
+        stateMachine.SetGlobalState(states[(int)UnemployedStates.Global]);
 
         bored = 0;
         stress = 0;
@@ -59,6 +72,13 @@ public class Unemployed : BaseGameEntity
 
     public void ChangeState(UnemployedStates newState)
     {
+        CurrentState = newState;
+
         stateMachine.ChangeState(states[(int)newState]);
+    }
+
+    public void RevertToPreviousState()
+    {
+        stateMachine.RevertToPreviousState();
     }
 }
