@@ -120,7 +120,7 @@ namespace UnemployedOwnedStates
 			entity.PrintText("볼일을 본다.");
 
 			// 바로 직전 상태로 되돌아간다.
-			entity.RevertToPreviousState();
+			// entity.RevertToPreviousState();
 		}
 
 		public override void Exit(Unemployed entity)
@@ -137,16 +137,16 @@ namespace UnemployedOwnedStates
 
 		public override void Execute(Unemployed entity)
 		{
-			if ( entity.CurrentState == UnemployedStates.VisitBathroom )
-			{
-				return;
-			}
+			// if ( entity.CurrentState == UnemployedStates.VisitBathroom )
+			// {
+			// 	return;
+			// }
 
-			int bathroomState = Random.Range(0, 100);
-			if ( bathroomState < 10 )
-			{
-				entity.ChangeState(UnemployedStates.VisitBathroom);
-			}
+			// int bathroomState = Random.Range(0, 100);
+			// if ( bathroomState < 10 )
+			// {
+			// 	entity.ChangeState(UnemployedStates.VisitBathroom);
+			// }
 		}
 
 		public override void Exit(Unemployed entity)

@@ -138,9 +138,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1445586791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70f3d36a55cf6184c87643637f2c8c46, type: 3}
+  m_Script: {fileID: 11500000, guid: bfcaa6e4e968d65489a2523075a95248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  arrayStudents:
+  - "\uC784\uC7AC\uACBD"
+  - "\uC774\uB984\uC5C6\uC74C"
+  studentPrefab: {fileID: 8580720542216737818, guid: ced637ad4fb314a4e8a8b25794cda905,
+    type: 3}
+  arrayUnemployeds:
+  - "\uD734\uD559\uC0DD1"
+  - "\uD734\uD559\uC0DD2"
+  - "\uD734\uD559\uC0DD3"
+  unemployedPrefab: {fileID: 3613480678582024878, guid: fe439f778fdd51047bf4cbfc4a2ac200,
+    type: 3}
 --- !u!4 &1445586793
 Transform:
   m_ObjectHideFlags: 0
