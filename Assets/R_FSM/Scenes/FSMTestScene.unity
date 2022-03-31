@@ -141,11 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70f3d36a55cf6184c87643637f2c8c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrayStudents:
-  - "\uC784\uC7AC\uACBD"
-  - "\uCD5C\uC815\uC740"
-  studentPrefab: {fileID: 8580720542216737818, guid: 057ec8175087a484ba52af78db6e3b7e,
-    type: 3}
 --- !u!4 &1445586793
 Transform:
   m_ObjectHideFlags: 0
