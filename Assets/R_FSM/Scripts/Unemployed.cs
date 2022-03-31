@@ -6,7 +6,7 @@ public enum UnemployedStates { RestAndSleep = 0, PlayAGame, HitTheBottle }
 
 public class Unemployed : BaseGameEntity
 {
-    private int boread;                 // 지루함
+    private int bored;                 // 지루함
     private int stress;                 // 스트레스
     private int fatigue;                // 피로
     private Locations currentLocation;  // 현재 위치
@@ -15,10 +15,10 @@ public class Unemployed : BaseGameEntity
     private State<Unemployed>[] states;
     private StateMachine<Unemployed> stateMachine;
 
-    public int Boread
+    public int Bored
     {
-        get => boread;
-        set => boread = Mathf.Max(0, value);
+        get => bored;
+        set => bored = Mathf.Max(0, value);
     }
     public int Stress
     {
@@ -46,7 +46,7 @@ public class Unemployed : BaseGameEntity
         // 상태를 관리하는 StateMachnie에 메모리를 할당하고, 첫 상태를 설정
         stateMachine = new StateMachine<Unemployed>();
 
-        boread = 0;
+        bored = 0;
         stress = 0;
         fatigue = 0;
         currentLocation = Locations.SweetHome;
