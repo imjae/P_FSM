@@ -12,7 +12,8 @@ public class Student : BaseGameEntity
 
     // Student가 가지고 있는 모든 상태, 현재 상태
     private State<Student>[] states;
-    private State<Student> currentState;
+    // private State<Student> currentState;
+    private StateMachine<Student> stateMachine;
 
     public int Knowledge
     {
@@ -57,7 +58,11 @@ public class Student : BaseGameEntity
         states[(int)StudentStates.HitTheBottle] = new StudentOwnedStates.HitTheBottle();
 
         // 현재 상태를 집에서 쉬는 "RestAndSleep" 상태로 설정
-        ChangeState(StudentStates.RestAndSleep);
+        // ChangeState(StudentStates.RestAndSleep);
+
+        // 상태를 관리하는 StateMachine에 메모리를 할당하고, 첫 상태를 설정
+        stateMachine = new StateMachine<Student>();
+        stateMachine.Setup(this, states[(int)StudentStates.RestAndSleep]);
 
         knowledge = 0;
         stress = 0;
@@ -71,25 +76,27 @@ public class Student : BaseGameEntity
     public override void Updated()
     {
         // PrintText("대기중입니다...");
-        if (currentState != null)
-        {
-            currentState.Execute(this);
-        }
+        // if (currentState != null)
+        // {
+        //     currentState.Execute(this);
+        // }
+        stateMachine.Execute();
     }
 
     public void ChangeState(StudentStates newState)
     {
         // 새로 바꾸려는 상태가 비어있으면 상태를 바꾸지 않는다.
-        if (states[(int)newState] == null) return;
+        // if (states[(int)newState] == null) return;
 
         // 현재 재생중인 상태가 있으면 Exit() 메소드 호출
-        if (currentState != null)
-        {
-            currentState.Exit(this);
-        }
+        // if (currentState != null)
+        // {
+        //     currentState.Exit(this);
+        // }
 
         // 새로운 상태로 변경하고, 새로 바뀐 상태의 Enter() 메소드 호출
-        currentState = states[(int)newState];
-        currentState.Enter(this);
+        // currentState = states[(int)newState];
+        // currentState.Enter(this);
+        stateMachine.ChangeState(states[(int)newState]);
     }
 }
